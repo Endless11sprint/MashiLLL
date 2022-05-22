@@ -6,13 +6,35 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v2
+    
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1
+      
+    - name: Navigate to Workspace
+      run: cd $GITHUB_WORKSPACE
+
+    - name: Create Build Directory
+      run: mkdir _build
+      
     - name: Restore Packages
-      run: nuget restore \TimeTraker.sln
+      run: nuget restore TimeTraker.sln
+
     - name: Build Solution
       run: |
-        msbuild.exe \TimeTraker.sln /nologo /nr:false
+        msbuild.exe TimeTraker.sln /nologo /nr:false
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: TimeTrakerBundle
+        path: "./_build"     
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
     - uses: actions/checkout@v2
     - name: Build for Windows
       run: C:\Windows\Microsoft.NET\Framework\v3.5\csc.exe /nologo TimeTraker\Program.cs
