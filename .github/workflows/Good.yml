@@ -6,6 +6,13 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+    - name: Restore Packages
+      run: nuget restore TimeTraker.sln
+    - name: Build Solution
+      run: |
+        msbuild.exe TimeTraker.sln /nologo /nr:false
     - uses: actions/checkout@v2
     - name: Build for Windows
       run: C:\Windows\Microsoft.NET\Framework\v3.5\csc.exe /nologo TimeTraker\Program.cs
