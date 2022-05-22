@@ -1,0 +1,16 @@
+name: Build1
+on:
+  push:
+    branches: master
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Binary
+        shell: cmd
+        run: call .\Build.cmd
+    - name: Build for Windows
+      if: matrix.os == 'windows-latest'
+      run: C:\Windows\Microsoft.NET\Framework\v4.7.2\csc.exe /nologo Program.cs
+        
