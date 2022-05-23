@@ -42,11 +42,11 @@ jobs:
         name: TimeTrakerBundle
         path: "./_build"     
     
-    -name: Upload artifact
-      uses: main/upload-artifact@v1.0.0
-      with:
-        name: TimeTrakerBundle
-        path: "./_dist"  
+    -name: Upload binaries to release
+     with:
+       repo_token: ${{ secrets.GITHUB_TOKEN }}
+       file: dist/${{ matrix.artifact_name }}
+       asset_name: ${{ matrix.asset_name }}
 
     
 
