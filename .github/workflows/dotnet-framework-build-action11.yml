@@ -33,7 +33,7 @@ jobs:
       run: |
         msbuild.exe TimeTraker.sln /nologo /nr:false
     - name: Build Solution Exe
-      run: C:\Windows\Microsoft.NET\Framework\v3.5\csc.exe /nologo TimeTraker\Program.cs
+      run: C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /p:Configuration=Release TimeTraker.sln
         
         
     - name: Upload artifact
