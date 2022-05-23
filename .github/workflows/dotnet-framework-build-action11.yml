@@ -36,17 +36,12 @@ jobs:
       run: C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /p:Configuration=Release TimeTraker.sln
         
         
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
       with:
-        name: TimeTrakerBundle
-        path: "./_build"     
-    
-    -name: Upload binaries to release
-     with:
-       repo_token: ${{ secrets.GITHUB_TOKEN }}
-       file: dist/${{ matrix.artifact_name }}
-       asset_name: ${{ matrix.asset_name }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/${{ matrix.artifact_name }}
+  
 
     
 
