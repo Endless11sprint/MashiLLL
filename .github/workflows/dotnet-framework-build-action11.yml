@@ -33,7 +33,7 @@ jobs:
       run: |
         msbuild.exe TimeTraker.sln /nologo /nr:false
     - name: Build Solution Exe
-      run: C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /p:Configuration=Release TimeTraker.sln
+      run: "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.com" /build Release TimeTraker.sln
         
         
     - name: Upload binaries to release
