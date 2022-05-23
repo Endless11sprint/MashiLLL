@@ -18,7 +18,7 @@ jobs:
       uses: nuget/setup-nuget@v1
       
     - name: Setup Microsoft.Net.Compilers
-      uses: Microsoft.Net.Compilers/setup-Microsoft.Net.Compilers@v1
+      run: Microsoft.Net.Compilers/setup-Microsoft.Net.Compilers@v1
       
     - name: Navigate to Workspace
       run: cd $GITHUB_WORKSPACE
